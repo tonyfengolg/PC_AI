@@ -1,0 +1,10 @@
+langchain
+PyPDF2
+python-dotenv
+streamlit
+faiss-cpu
+altair
+tiktoken
+langchain_openai
+langchain-community
+langchain-core
