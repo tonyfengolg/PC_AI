@@ -11,8 +11,7 @@ from htmlTemplates import css, bot_template, user_template
 
 
 import os
-os.environ["AZURE_OPENAI_API_KEY"] == st.secrets["AZURE_OPENAI_API_KEY"]
-os.environ["AZURE_OPENAI_ENDPOINT"] == st.secrets["AZURE_OPENAI_ENDPOINT"]
+
 
 
 
@@ -38,7 +37,7 @@ def get_text_chunks(text):
 
 
 def get_vectorstore(text_chunks):
-    embeddings =  AzureOpenAIEmbeddings(model='text-embedding-ada-002')
+    embeddings =  AzureOpenAIEmbeddings(model='text-embedding-ada-002',api_key=st.secrets.api_key,azure_endpoint=st.secrets.azure_endpoint)
     # embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
     return vectorstore
@@ -47,7 +46,7 @@ def get_vectorstore(text_chunks):
 def get_conversation_chain(vectorstore):
     llm = AzureChatOpenAI(
     openai_api_version="2024-02-01",
-    azure_deployment="gpt-4-32k",)
+    azure_deployment="gpt-4-32k",api_key=st.secrets.api_key,azure_endpoint=st.secrets.azure_endpoint)
 
 
     memory = ConversationBufferMemory(
