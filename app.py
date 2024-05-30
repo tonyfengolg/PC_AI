@@ -9,12 +9,10 @@ from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
 import streamlit as st
 
+
 import os
-
-os.environ["AZURE_OPENAI_API_KEY"] = st.secrets['AZURE_OPENAI_API_KEY']
-os.environ["AZURE_OPENAI_ENDPOINT"] = st.secrets['AZURE_OPENAI_ENDPOINT']
-
-
+os.environ["AZURE_OPENAI_API_KEY"] = st.secrets["AZURE_OPENAI_API_KEY"]
+os.environ["AZURE_OPENAI_ENDPOINT"] = "https://candaeastaa.openai.azure.com/"
 
 def get_pdf_text(pdf_docs):
     text = ""
