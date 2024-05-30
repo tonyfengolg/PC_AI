@@ -13,8 +13,8 @@ from htmlTemplates import css, bot_template, user_template
 import os
 
 
-os.environ["AZURE_OPENAI_API_KEY"] ="6c9ba7fffe574ed6983a7dbadabc3a04",
-os.environ["AZURE_OPENAI_ENDPOINT"] ="https://candaeastaa.openai.azure.com/,
+os.environ["AZURE_OPENAI_API_KEY"] = "655f425df0ea4caa97c1ec3f7f88adaf"
+os.environ["AZURE_OPENAI_ENDPOINT"] = "https://candaeastaa.openai.azure.com/"
 
 
 def get_pdf_text(pdf_docs):
