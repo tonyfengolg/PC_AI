@@ -36,10 +36,8 @@ def get_text_chunks(text):
     chunks = text_splitter.split_text(text)
     return chunks
 
-
 def get_vectorstore(text_chunks):
-    embeddings =  AzureOpenAIEmbeddings(model='text-embedding-ada-002',
-                                        )
+    embeddings =  AzureOpenAIEmbeddings(model='text-embedding-ada-002')
     # embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
     return vectorstore
@@ -77,7 +75,7 @@ def handle_userinput(user_question):
 
 def main():
     load_dotenv()
-    st.set_page_config(page_title="OLG P&C Policy AI",
+    st.set_page_config(page_title="Chat with multiple PDFs",
                        page_icon=":books:")
     st.write(css, unsafe_allow_html=True)
 
@@ -86,15 +84,15 @@ def main():
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
 
-    st.header("OLG P&C Policy AI :books:")
-    user_question = st.text_input("Ask a question about P&C Policies:")
+    st.header("Chat with multiple PDFs :books:")
+    user_question = st.text_input("Ask a question about your documents:")
     if user_question:
         handle_userinput(user_question)
 
     with st.sidebar:
-        st.subheader("P&C Policy")
+        st.subheader("Your documents")
         pdf_docs = st.file_uploader(
-            "Upload P&C Policy here and click on 'Process'", accept_multiple_files=True)
+            "Upload your PDFs here and click on 'Process'", accept_multiple_files=True)
         if st.button("Process"):
             with st.spinner("Processing"):
                 # get pdf text
