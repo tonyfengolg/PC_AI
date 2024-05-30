@@ -11,10 +11,10 @@ from htmlTemplates import css, bot_template, user_template
 
 
 import os
-
-os.environ["AZURE_OPENAI_API_KEY"] = st.secrets.AZURE_OPENAI_API_KEY
-os.environ["AZURE_OPENAI_ENDPOINT"] = st.secrets.AZURE_OPENAI_ENDPOINT
-
+st.write(
+    os.environ["AZURE_OPENAI_API_KEY"] = st.secrets.AZURE_OPENAI_API_KEY,
+    os.environ["AZURE_OPENAI_ENDPOINT"] = st.secrets.AZURE_OPENAI_ENDPOINT
+)
 
 
 def get_pdf_text(pdf_docs):
