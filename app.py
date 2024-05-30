@@ -10,9 +10,7 @@ from htmlTemplates import css, bot_template, user_template
 import streamlit as st
 
 
-import os
-os.environ["AZURE_OPENAI_API_KEY"] = st.secrets["AZURE_OPENAI_API_KEY"]
-os.environ["AZURE_OPENAI_ENDPOINT"] = "https://candaeastaa.openai.azure.com/"
+
 
 def get_pdf_text(pdf_docs):
     text = ""
@@ -34,7 +32,8 @@ def get_text_chunks(text):
     return chunks
 
 def get_vectorstore(text_chunks):
-    embeddings =  AzureOpenAIEmbeddings(model='text-embedding-ada-002')
+    embeddings =  AzureOpenAIEmbeddings(model='text-embedding-ada-002',api_key=st.secrets['AZURE_OPENAI_API_KEY'],
+    azure_endpoint=st.secrets['AZURE_OPENAI_ENDPOINT'])
     # embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
     return vectorstore
@@ -44,6 +43,8 @@ def get_conversation_chain(vectorstore):
     llm = AzureChatOpenAI(
     openai_api_version="2024-02-01",
     azure_deployment="gpt-4-32k",
+    api_key=st.secrets['AZURE_OPENAI_API_KEY'],
+    azure_endpoint=st.secrets['AZURE_OPENAI_ENDPOINT']
     )
 
 
@@ -72,7 +73,7 @@ def handle_userinput(user_question):
 
 def main():
     load_dotenv()
-    st.set_page_config(page_title="Chat with multiple PDFs",
+    st.set_page_config(page_title="OLG P&C AI",
                        page_icon=":books:")
     st.write(css, unsafe_allow_html=True)
 
@@ -81,13 +82,13 @@ def main():
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
 
-    st.header("Chat with multiple PDFs :books:")
-    user_question = st.text_input("Ask a question about your documents:")
+    st.header("OLG P&C AI:books:")
+    user_question = st.text_input("Ask a question about the policy:")
     if user_question:
         handle_userinput(user_question)
 
     with st.sidebar:
-        st.subheader("Your documents")
+        st.subheader("P&C Policy")
         pdf_docs = st.file_uploader(
             "Upload your PDFs here and click on 'Process'", accept_multiple_files=True)
         if st.button("Process"):
