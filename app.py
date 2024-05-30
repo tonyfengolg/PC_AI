@@ -12,6 +12,7 @@ from htmlTemplates import css, bot_template, user_template
 
 import os
 st.write(
+    "Has environment variables been set:",
     os.environ["AZURE_OPENAI_API_KEY"] = st.secrets.AZURE_OPENAI_API_KEY,
     os.environ["AZURE_OPENAI_ENDPOINT"] = st.secrets.AZURE_OPENAI_ENDPOINT
 )
