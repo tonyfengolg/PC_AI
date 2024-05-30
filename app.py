@@ -10,7 +10,13 @@ from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
 
 
+import os
 
+st.write(
+    "Has environment variables been set:",
+    os.environ["AZURE_OPENAI_API_KEY"] == st.secrets["AZURE_OPENAI_API_KEY"],
+    os.environ["AZURE_OPENAI_ENDPOINT"] == st.secrets["AZURE_OPENAI_ENDPOINT"],
+)
 
 
 
@@ -36,7 +42,7 @@ def get_text_chunks(text):
 
 def get_vectorstore(text_chunks):
     embeddings =  AzureOpenAIEmbeddings(model='text-embedding-ada-002',
-                                        openai_api_key=st.secrets.AZURE_OPENAI_API_KEY,azure_endpoint=st.secrets.AZURE_OPENAI_ENDPOINT)
+                                        )
     # embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
     return vectorstore
@@ -46,8 +52,6 @@ def get_conversation_chain(vectorstore):
     llm = AzureChatOpenAI(
     openai_api_version="2024-02-01",
     azure_deployment="gpt-4-32k",
-    api_key=st.secrets.AZURE_OPENAI_API_KEY,
-    azure_endpoint=st.secrets.AZURE_OPENAI_ENDPOINT
     )
 
 
