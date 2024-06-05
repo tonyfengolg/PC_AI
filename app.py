@@ -8,6 +8,8 @@ from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
 import streamlit as st
+from langchain_core.messages import AIMessage, HumanMessage
+
 
 
 
@@ -83,7 +85,7 @@ def main():
         st.session_state.chat_history = None
 
     st.header("OLG P&C AI:books:")
-    user_question = st.text_input("Ask a question about the policy:")
+    user_question = st.chat_input("Ask a question about the policy:")
     if user_question:
         handle_userinput(user_question)
 
