@@ -8,3 +8,4 @@ tiktoken
 langchain_openai
 langchain-community
 langchain-core
+streamlit-authenticator
