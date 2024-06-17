@@ -29,7 +29,7 @@ css = '''
 
 
 
-bot_template = f'''
+bot_template = '''
 <div class="chat-message bot">
     <div class="avatar">
         <img src="https://about.olg.ca/wp-content/uploads/2022/06/FIVE-TRUTHS-IMG-2.png"" style="max-height: 78px; max-width: 78px; border-radius: 50%; object-fit: cover;">
