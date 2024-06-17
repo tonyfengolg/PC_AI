@@ -1,3 +1,5 @@
+import base64
+
 css = '''
 <style>
 .chat-message {
@@ -25,10 +27,12 @@ css = '''
 }
 '''
 
-bot_template = '''
+
+
+bot_template = f'''
 <div class="chat-message bot">
     <div class="avatar">
-        <img src="https://i.ibb.co/cN0nmSj/Screenshot-2023-05-28-at-02-37-21.png" style="max-height: 78px; max-width: 78px; border-radius: 50%; object-fit: cover;">
+        <img src="https://about.olg.ca/wp-content/uploads/2022/06/FIVE-TRUTHS-IMG-2.png"" style="max-height: 78px; max-width: 78px; border-radius: 50%; object-fit: cover;">
     </div>
     <div class="message">{{MSG}}</div>
 </div>
@@ -37,7 +41,7 @@ bot_template = '''
 user_template = '''
 <div class="chat-message user">
     <div class="avatar">
-        <img src="https://www.olg.ca/content/dam/olg/web/product/resources/favicons/olg-default-banner.jpg">
+        <img src="https://th.bing.com/th/id/OIP.VMJDtEFEuFaD29PzCHc-sgHaC9?w=315&h=140&c=7&r=0&o=5&pid=1.7">
     </div>    
     <div class="message">{{MSG}}</div>
 </div>
