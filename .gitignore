@@ -55,8 +55,7 @@ cover/
 *.mo
 *.pot
 
-
-secrets.toml
+.streamlit/secrets.toml
 # Django stuff:
 *.log
 local_settings.py
