@@ -47,7 +47,7 @@ def check_password():
 
 embeddings =  AzureOpenAIEmbeddings(model='text-embedding-ada-002',api_key=st.secrets['AZURE_OPENAI_API_KEY'],
     azure_endpoint=st.secrets['AZURE_OPENAI_ENDPOINT'])
-new_vectorstore = FAISS.load_local("docs/faiss_index_react", embeddings, allow_dangerous_deserialization=True)
+new_vectorstore = FAISS.load_local("docs/faiss_index_react_all", embeddings, allow_dangerous_deserialization=True)
 
 def get_conversation_chain(vectorstore):
     llm = AzureChatOpenAI(
