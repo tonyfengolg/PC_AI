@@ -9,14 +9,3 @@ langchain_openai
 langchain-community
 langchain-core
 streamlit-authenticator
-langchain-experimental
-unstructured[all-docs]
-unstructured-inference
-psutil
-poppler-utils
-pillow
-pydantic
-lxml
-tesseract
-pytesseract
-IPython
