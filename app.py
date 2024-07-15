@@ -83,8 +83,8 @@ def handle_userinput(user_question):
 
 def main():
     load_dotenv()
-    if not check_password():
-        st.stop()
+    # if not check_password():
+    #     st.stop()
     st.session_state.conversation = get_conversation_chain(
                     new_vectorstore)
     st.set_page_config(page_title="OLG P&C AI",
